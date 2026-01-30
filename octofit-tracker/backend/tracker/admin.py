@@ -1,0 +1,9 @@
+from django.contrib import admin
+from .models import Activity
+
+
+@admin.register(Activity)
+class ActivityAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'activity_type', 'date', 'duration_minutes', 'distance_km')
+    list_filter = ('activity_type', 'date')
+    search_fields = ('user__username', 'activity_type')
