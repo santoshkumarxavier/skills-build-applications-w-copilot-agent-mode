@@ -16,6 +16,7 @@ Including another URLconf
 import os
 from django.contrib import admin
 from django.urls import path, include
+from tracker.urls import api_root
 
 codespace_name = os.environ.get('CODESPACE_NAME')
 if codespace_name:
@@ -25,5 +26,6 @@ else:
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # API routes should be included here (e.g., path('api/', include('tracker.urls')) )
+    path('api/', api_root, name='api-root'),
+    path('api/', include('tracker.urls')),
 ]
